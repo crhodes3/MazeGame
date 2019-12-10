@@ -24,6 +24,7 @@
         android:layout_height="51dp"
         android:text="Level: 0"
         android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+        android:visibility="invisible"
         tools:layout_editor_absoluteX="16dp"
         tools:layout_editor_absoluteY="67dp" />
 
@@ -33,7 +34,7 @@
         android:layout_height="57dp"
         android:text="Seconds Left: "
         android:textAppearance="@style/TextAppearance.AppCompat.Body2"
-        tools:layout_editor_absoluteX="347dp"
+        tools:layout_editor_absoluteX="331dp"
         tools:layout_editor_absoluteY="28dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

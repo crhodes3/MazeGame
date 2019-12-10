@@ -1,16 +1,17 @@
 package com.example.mazegame;
 
 import android.content.Context;
+import android.content.res.Resources;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
-import android.os.CountDownTimer;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.TextView;
 
 import androidx.annotation.Nullable;
+
 
 import java.util.ArrayList;
 import java.util.Random;
@@ -30,7 +31,6 @@ public class Background extends View {
     private Random random;
     private Paint wPaint, playerPaint, endPaint;
     private static int count = 0;
-    private static CountDownTimer cTimer = null;
 
     public Background(Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
@@ -45,11 +45,8 @@ public class Background extends View {
         endPaint = new Paint();
         endPaint.setColor(Color.RED);
 
-
-
         createGame();
     }
-
 
     private Cell getNeighbor(Cell cell) {
         ArrayList<Cell> neighbors = new ArrayList<>();
@@ -100,7 +97,7 @@ public class Background extends View {
         }
     }
 
-    private void createGame() {
+    public void createGame() {
         Stack<Cell> stack = new Stack<>();
         Cell curr, next;
 
@@ -129,32 +126,10 @@ public class Background extends View {
                 curr = stack.pop();
             }
         } while (!stack.empty());
-        startTimer();
+
     }
 
 
-    public void startTimer() {
-        cTimer = new CountDownTimer(30000, 1000) {
-            TextView timer = findViewById(R.id.timer);
-            public void onTick(long millisUntilFinished) {
-                timer.setText("Seconds left: " + (millisUntilFinished / 1000));
-
-
-            }
-            public void onFinish() {
-            }
-        };
-        cTimer.start();
-    }
-
-
-    public static void cancelTimer() {
-        if(cTimer!=null)
-            cTimer.cancel();
-    }
-
-
-    @Override
     protected void onDraw(Canvas canvas) {
         canvas.drawColor(Color.GREEN);
 
@@ -249,14 +224,13 @@ public class Background extends View {
 
             createGame();
             count++;
-            TextView levelCounter = findViewById(R.id.levelCount);
+            TextView levelCounter = (TextView) findViewById(R.id.levelCount);
+            System.out.println(findViewById(R.id.levelCount));
             String level = "Level: " + count;
-            levelCounter.setText(level);
+            //levelCounter.setText(level);
         }
     }
 
-
-    @Override
     public boolean onTouchEvent(MotionEvent event) {
         if (event.getAction() == MotionEvent.ACTION_DOWN) {
             return true;
