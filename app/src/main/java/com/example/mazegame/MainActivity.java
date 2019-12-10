@@ -25,7 +25,7 @@ public class MainActivity extends AppCompatActivity {
 
     //start timer function
     void startTimer() {
-        this.cTimer = new CountDownTimer(60000, 1000) {
+        this.cTimer = new CountDownTimer(30000, 1000) {
             TextView timer = (TextView) findViewById(R.id.timer);
             public void onTick(long millisUntilFinished) {
                 timer.setText("Time left: " + millisUntilFinished / 1000);
